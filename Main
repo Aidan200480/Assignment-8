@@ -1,0 +1,60 @@
+//here's the imports you will need to start, and i've left some code with some blanks for you to figure out
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args){
+
+        // meaningful variable names
+        File inputfile = new File("students.txt"); // Added file location
+        List<String> namesList = new ArrayList<>();       // Stores each name in order
+        List<Double> gpaList = new ArrayList<>();         // Stores all the students gpa's in same order as names
+        List<String> highGpaNames = new ArrayList<>();    // Stores only students names that have over a 3.5 gpa
+
+        try {
+            Scanner input = new Scanner(inputfile);
+
+            while(input.hasNext()){
+                // reads the name and stores it
+                String studentName = input.nextLine().trim();
+                namesList.add(studentName);
+
+                // reads the students gpa on the following line and converts it to a number
+                double studentGpa = Double.parseDouble(input.nextLine().trim());
+                gpaList.add(studentGpa);
+
+                // Checks to see if the student meets the 3.5 gpa req. and stores the name if they do
+                if(studentGpa > 3.5){
+                    highGpaNames.add(studentName);
+                }
+            }
+
+            input.close();
+
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        // Prints the full list to make sure the text file is loaded right *had a lil trouble but figured it out*
+        System.out.println(namesList);
+
+        // Sum of the number of names in the text file
+        int totalNames = namesList.size();
+
+        // Prints the students with above a gpa of 3.5 and the total number of names
+        System.out.println("Students with GPA over 3.5: " + highGpaNames);
+        System.out.println("Total number of names: " + totalNames);
+
+
+       //      -What I learned from this assignment-
+       // After completeing this assignment I now have a better understanding
+       // of how to utilize .txt files in my code. I have a better grasp on how to organize data into lists,
+       // compare values with conditionals, and I know how to pull out the info I need.
+       // In summary, this assignment helped reinforce my understanding of how files and program logic can work together.
+
+
+      // Aidan McCormac - 11/16/2025
+    }
+}
